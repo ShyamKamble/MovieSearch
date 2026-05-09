@@ -3,26 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommendation</title>
+    <title>Movie Search - Discover Your Next Favorite Film</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Movie Search</h1>
-        <div class="search-bar">
-            <input type="text" id="movie-search" placeholder="Search for a movie...">
-            <button id="search-button">Search</button>
+    <div class="stars"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo"><i class="fas fa-film"></i> MovieSearch</h1>
+            <p class="tagline">Discover Movies, Find Your Next Favorite</p>
         </div>
-        <div id="movie-details" class="hidden">
-            <img id="movie-poster" src="" alt="Movie Poster" class="hidden">
-            <div class="movie-info">
-                <h2 id="movie-title" class="hidden"><strong>Name:</strong> <span></span></h2>
-                <p id="movie-plot" class="hidden"><strong>Plot:</strong> <span></span></p>
-                <p id="movie-cast" class="hidden"><strong>Actors:</strong> <span></span></p>
+    </header>
+
+    <main class="container">
+        <div class="search-container">
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="movie-search" 
+                    placeholder="Search for a movie, actor, or director..."
+                    autocomplete="off"
+                >
+                <button id="search-button" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <div class="loader hidden" id="loader">
+                <div class="spinner"></div>
             </div>
         </div>
-        
-    </div>
-    <script src="index.js"></script>
+
+        <div id="movie-details" class="movie-details hidden">
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img id="movie-poster" src="" alt="Movie Poster" class="movie-poster">
+                    <div class="rating-badge" id="rating-badge"></div>
+                </div>
+                
+                <div class="movie-info">
+                    <h2 id="movie-title" class="movie-title"></h2>
+                    
+                    <div class="movie-meta">
+                        <span id="movie-year" class="meta-item"></span>
+                        <span id="movie-rated" class="meta-item"></span>
+                        <span id="movie-runtime" class="meta-item"></span>
+                    </div>
+
+                    <div class="movie-genres">
+                        <strong>Genre:</strong>
+                        <span id="movie-genre" class="genres-list"></span>
+                    </div>
+
+                    <div class="movie-section">
+                        <strong>Plot:</strong>
+                        <p id="movie-plot" class="movie-plot"></p>
+                    </div>
+
+                    <div class="movie-section">
+                        <strong>Actors:</strong>
+                        <p id="movie-cast" class="movie-cast"></p>
+                    </div>
+
+                    <div class="movie-section">
+                        <strong>Director:</strong>
+                        <p id="movie-director" class="movie-director"></p>
+                    </div>
+
+                    <div class="movie-section">
+                        <strong>IMDb Rating:</strong>
+                        <p id="movie-imdb-rating" class="imdb-rating"></p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="clear-button" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="error-message" class="error-message hidden"></div>
+
+        <div id="welcome-section" class="welcome-section">
+            <div class="welcome-content">
+                <i class="fas fa-search-large"></i>
+                <h2>Find Your Next Movie</h2>
+                <p>Search for any movie title to discover ratings, plots, cast, and more!</p>
+                <div class="feature-list">
+                    <div class="feature"><i class="fas fa-star"></i> IMDb Ratings</div>
+                    <div class="feature"><i class="fas fa-users"></i> Cast Information</div>
+                    <div class="feature"><i class="fas fa-scroll"></i> Plot Details</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Powered by OMDb API | © 2026 MovieSearch. All rights reserved.</p>
+    </footer>
+
+    <script src="Index.js"></script>
 </body>
 </html>
