@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ec2-user/MovieSearch
-
+            sudo systemctl stop httpd
             git pull origin main
 
             sudo cp -r * /usr/share/nginx/html/
