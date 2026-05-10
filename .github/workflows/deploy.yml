@@ -8,31 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Check Secret
-      run: |
-        if [ -z "${{ secrets.EC2_HOST }}" ]; then
-          echo "EC2_HOST is EMPTY"
-          exit 1
-        fi
-    
-    - name: Deploy to EC2
-      uses: appleboy/ssh-action@v1.2.0
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ec2-user
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd /home/ec2-user/urlshortner
-          git pull origin main
-          
-          cd backend
-          npm install --production
-          
-          cd ../frontend/tinyurl-frontend
-          npm install
-          npm run build
-          
-          pm2 restart urlshortner-backend
-          sudo systemctl reload nginx
+      - name: Deploy Static Website to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ec2-user/MovieSearch
+
+            git pull origin main
+
+            sudo cp -r * /usr/share/nginx/html/
+
+            sudo systemctl restart nginx
